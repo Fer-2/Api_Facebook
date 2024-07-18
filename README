@@ -1,0 +1,76 @@
+API MARKETING DE FACEBOOK
+- Nuestro grupo eligió el api de marketing utilizando creando la aplicación desde la cuenta del hospedaje - restaurante "Huayta Wasy" 
+y para realizar el trabajo seguimos los siguientes pasos:
+
+1. Formación del Equipo y Configuración de GitHub
+
+Acciones:
+
+. Crear el repositorio en GitHub:
+- Un miembro del equipo debe crear un nuevo repositorio en GitHub.
+- Invitar a los demás miembros como colaboradores.
+. Asignar roles:
+- Desarrollador principal: Encargado del código principal y de coordinar el trabajo.
+. Encargado de la documentación: Responsable de mantener la documentación del proyecto.
+. Encargado de pruebas: Responsable de diseñar y ejecutar las pruebas del sistema.
+. Otros roles según sea necesario (por ejemplo, diseño de la web, análisis de datos).
+. Configurar flujo de trabajo:
+- Decidir una estrategia de ramas (por ejemplo, main, development, feature-branches).
+- Establecer reglas para hacer merge (por ejemplo, requerir revisiones antes de fusionar).
+2. Investigación y Planificación
+
+Acciones:
+
+. Investigar sobre la API:
+- Leer la documentación oficial de la API de Marketing de Facebook o de la otra API seleccionada.
+- Tomar notas sobre los puntos importantes como los endpoints disponibles, parámetros necesarios, límites de rate, etc.
+. Definir objetivos específicos:
+- Determinar qué métricas y datos son esenciales (impresiones, clics, coste, rendimiento por campañas, etc.).
+. Plan de trabajo:
+- Asignar tareas específicas a cada miembro del equipo.
+3. Configuración y Autenticación de la API
+
+. Acciones:
+
+. Obtener credenciales:
+- Crear una aplicación en el portal de desarrolladores de Facebook (o el portal correspondiente de la otra API).
+- Obtener el Access Token, App ID y App Secret necesarios.
+. Implementar autenticación:
+- Usar las credenciales para autenticar las solicitudes a la API.
+- Asegurarse de que el token se renueve automáticamente si es necesario.
+4. Desarrollo del Extractor de datos
+
+. Acciones:
+. Realizar llamadas a la API:
+- Utilizar una librería como requests en Python para hacer solicitudes GET/POST a la API.
+. Desarrollar el código de extracción:
+- Escribir scripts para extraer los datos necesarios (impresiones, clics, coste, etc.).
+- Manejar posibles errores en las solicitudes y limitaciones de rate.
+. Almacenar los datos:
+- Guardar los datos en una base de datos (por ejemplo, SQLite, PostgreSQL) o en archivos CSV/JSON para su posterior procesamiento.
+5. Transformación de la Información
+
+. Acciones:
+
+. Procesar y limpiar los datos:
+- Eliminar duplicados, manejar valores nulos, y convertir los datos a formatos adecuados.
+. Realizar transformaciones útiles:
+- Calcular estadísticas básicas como promedio de impresiones, tasa de clics, etc.
+. Preparar los datos para visualización:
+- Organizar los datos de forma que sean fáciles de consumir para la visualización (por ejemplo, en un formato tabular).
+6. Desarrollo de la Página Web
+. Acciones:
+
+. Crear la página web:
+- Utilizar HTML y CSS para crear la estructura y el estilo de la página.
+- Visualización de datos:
+- Usar bibliotecas de JavaScript como Chart.js, D3.js, o Plotly para crear gráficos interactivos.
+
+7. Pruebas y Documentación
+. Acciones:
+
+. Realizar pruebas:
+- Probar el extractor de datos con diferentes escenarios para asegurar su robustez.
+- Probar la página web en diferentes navegadores y dispositivos para asegurar su funcionalidad y responsividad.
+. Documentar el código:
+- Crear una documentación clara y detallada que explique cómo usar la aplicación, cómo configurarla, y cómo mantenerla.

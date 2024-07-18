@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos de la Campaña</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Datos de la Campaña</h1>
+    <h2>Tabla de Datos</h2>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Campaign ID</th>
+                <th>Campaign Name</th>
+                <th>Impressions</th>
+                <th>Clicks</th>
+                <th>Spend</th>
+                <th>Reach</th>
+                <th>Frequency</th>
+                <th>CPM</th>
+                <th>CPC</th>
+                <th>CTR</th>
+                <th>Actions</th>
+                <th>Date Start</th>
+                <th>Date Stop</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Los datos se cargarán aquí -->
+        </tbody>
+    </table>
+
+    <h2>Gráficos Estadísticos</h2>
+    <div class="chart-container">
+        <canvas id="impressionsChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="clicksChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="spendChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Datos actualizados de las campañas
+        const data = [
+            {
+                "campaign_id": "120204208005230470",
+                "campaign_name": "Publicación: \"🎶🎉✨Pasa los mejores carnavales en HuaytaWasy 🎉🌥🎊\"",
+                "impressions": "16450",
+                "clicks": "941",
+                "spend": "50",
+                "reach": "10185",
+                "frequency": "1.61512",
+                "cpm": "3.039514",
+                "cpc": "0.053135",
+                "ctr": "5.720365",
+                "actions": "[{'action_type': 'comment', 'value': '4'}, {'action_type': 'page_engagement', 'value': '274'}, {'action_type': 'post_engagement', 'value': '274'}, {'action_type': 'photo_view', 'value': '4'}, {'action_type': 'onsite_conversion.messaging_user_depth_3_message_send', 'value': '4'}, {'action_type': 'post', 'value': '7'}, {'action_type': 'onsite_conversion.messaging_user_depth_2_message_send', 'value': '19'}, {'action_type': 'onsite_conversion.messaging_conversation_started_7d', 'value': '31'}, {'action_type': 'post_reaction', 'value': '35'}, {'action_type': 'link_click', 'value': '224'}]",
+                "date_start": "2024-01-01",
+                "date_stop": "2024-06-30"
+            },
+            {
+                "campaign_id": "120206409681650470",
+                "campaign_name": "Publicación: \"🔴Lanzamos nuestros paquetes para Semana Santa ✝️...\"",
+                "impressions": "9776",
+                "clicks": "849",
+                "spend": "60",
+                "reach": "5650",
+                "frequency": "1.730265",
+                "cpm": "6.13748",
+                "cpc": "0.070671",
+                "ctr": "8.684534",
+                "actions": "[{'action_type': 'onsite_conversion.total_messaging_connection', 'value': '1'}, {'action_type': 'onsite_conversion.messaging_first_reply', 'value': '1'}, {'action_type': 'comment', 'value': '7'}, {'action_type': 'page_engagement', 'value': '548'}, {'action_type': 'post_engagement', 'value': '548'}, {'action_type': 'photo_view', 'value': '439'}, {'action_type': 'onsite_conversion.messaging_user_depth_3_message_send', 'value': '5'}, {'action_type': 'post', 'value': '3'}, {'action_type': 'onsite_conversion.messaging_user_depth_2_message_send', 'value': '26'}, {'action_type': 'onsite_conversion.messaging_conversation_replied_7d', 'value': '1'}, {'action_type': 'onsite_conversion.messaging_conversation_started_7d', 'value': '40'}, {'action_type': 'post_reaction', 'value': '29'}, {'action_type': 'link_click', 'value': '70'}]",
+                "date_start": "2024-01-01",
+                "date_stop": "2024-06-30"
+            },
+            {
+                "campaign_id": "120206686537250470",
+                "campaign_name": "Publicación: \"🇵🇪 Se acerca la Semana Santa 🌄 . Disfruta de...\"",
+                "impressions": "3698",
+                "clicks": "392",
+                "spend": "38.24",
+                "reach": "2419",
+                "frequency": "1.528731",
+                "cpm": "10.340725",
+                "cpc": "0.097551",
+                "ctr": "10.600325",
+                "actions": "[{'action_type': 'onsite_conversion.post_save', 'value': '1'}, {'action_type': 'comment', 'value': '2'}, {'action_type': 'page_engagement', 'value': '225'}, {'action_type': 'post_engagement', 'value': '225'}, {'action_type': 'photo_view', 'value': '190'}, {'action_type': 'onsite_conversion.messaging_user_depth_3_message_send', 'value': '1'}, {'action_type': 'post', 'value': '2'}, {'action_type': 'onsite_conversion.messaging_user_depth_2_message_send', 'value': '3'}, {'action_type': 'onsite_conversion.messaging_conversation_started_7d', 'value': '6'}, {'action_type': 'post_reaction', 'value': '14'}, {'action_type': 'link_click', 'value': '16'}]",
+                "date_start": "2024-01-01",
+                "date_stop": "2024-06-30"
+            },
+            {
+                "campaign_id": "120206843690700470",
+                "campaign_name": "Publicación: \"🔴Lanzamos nuestros paquetes para Semana Santa ✝️...\"",
+                "impressions": "12242",
+                "clicks": "1181",
+                "spend": "100",
+                "reach": "7274",
+                "frequency": "1.68298",
+                "cpm": "8.1686",
+                "cpc": "0.084674",
+                "ctr": "9.647116",
+                "actions": "[{'action_type': 'comment', 'value': '1'}, {'action_type': 'page_engagement', 'value': '3451'}, {'action_type': 'post_engagement', 'value': '3451'}, {'action_type': 'onsite_conversion.messaging_user_depth_3_message_send', 'value': '7'}, {'action_type': 'post', 'value': '2'}, {'action_type': 'onsite_conversion.messaging_user_depth_2_message_send', 'value': '24'}, {'action_type': 'onsite_conversion.messaging_conversation_started_7d', 'value': '33'}, {'action_type': 'video_view', 'value': '3316'}, {'action_type': 'post_reaction', 'value': '55'}, {'action_type': 'link_click', 'value': '77'}]",
+                "date_start": "2024-01-01",
+                "date_stop": "2024-06-30"
+            },
+            {
+                "campaign_id": "120207080912310470",
+                "campaign_name": "[20/03/2024] Promoción de ",
+                "impressions": "19674",
+                "clicks": "1273",
+                "spend": "201.28",
+                "reach": "13417",
+                "frequency": "1.466349",
+                "cpm": "10.230761",
+                "cpc": "0.158115",
+                "ctr": "6.470469",
+                "actions": "[{'action_type': 'onsite_conversion.messaging_first_reply', 'value': '1'}, {'action_type': 'onsite_conversion.post_save', 'value': '4'}, {'action_type': 'comment', 'value': '6'}, {'action_type': 'page_engagement', 'value': '5614'}, {'action_type': 'post_engagement', 'value': '5614'}, {'action_type': 'onsite_conversion.messaging_user_depth_3_message_send', 'value': '8'}, {'action_type': 'post', 'value': '4'}, {'action_type': 'onsite_conversion.messaging_user_depth_2_message_send', 'value': '41'}, {'action_type': 'onsite_conversion.messaging_conversation_started_7d', 'value': '63'}, {'action_type': 'video_view', 'value': '5437'}, {'action_type': 'post_reaction', 'value': '62'}, {'action_type': 'link_click', 'value': '101'}]",
+                "date_start": "2024-01-01",
+                "date_stop": "2024-06-30"
+            },
+            {
+                "campaign_id": "120207420070310470",
+                "campaign_name": "Publicación: \"✨️✨️✨️ULTIMO BUNGALOW DE 5 Y 7 PERSONAS, PRECIOS...\"",
+                "impressions": "7781",
+                "clicks": "597",
+                "spend": "45",
+                "reach": "6317",
+                "frequency": "1.231756",
+                "cpm": "5.783318",
+                "cpc": "0.075377",
+                "ctr": "7.672536",
+                "actions": "[{'action_type': 'onsite_conversion.post_save', 'value': '2'}, {'action_type': 'page_engagement', 'value': '2208'}, {'action_type': 'post_engagement', 'value': '2208'}, {'action_type': 'onsite_conversion.messaging_user_depth_3_message_send', 'value': '6'}, {'action_type': 'post', 'value': '3'}, {'action_type': 'onsite_conversion.messaging_user_depth_2_message_send', 'value': '15'}, {'action_type': 'onsite_conversion.messaging_conversation_started_7d', 'value': '18'}, {'action_type': 'video_view', 'value': '2150'}, {'action_type': 'post_reaction', 'value': '23'}, {'action_type': 'link_click', 'value': '30'}]",
+                "date_start": "2024-01-01",
+                "date_stop": "2024-06-30"
+            },
+            {
+                "campaign_id": "120209360837140470",
+                "campaign_name": "Publicación: \"🎊 SE VIENE LA FIESTA DE SAN JUAN DEL 22 AL 24 DE...\"",
+                "impressions": "18024",
+                "clicks": "1690",
+                "spend": "70",
+                "reach": "10589",
+                "frequency": "1.702144",
+                "cpm": "3.883711",
+                "cpc": "0.04142",
+                "ctr": "9.376387",
+                "actions": "[{'action_type': 'comment', 'value': '5'}, {'action_type': 'page_engagement', 'value': '722'}, {'action_type': 'post_engagement', 'value': '720'}, {'action_type': 'photo_view', 'value': '580'}, {'action_type': 'onsite_conversion.messaging_user_depth_3_message_send', 'value': '7'}, {'action_type': 'post', 'value': '9'}, {'action_type': 'onsite_conversion.messaging_user_depth_2_message_send', 'value': '31'}, {'action_type': 'like', 'value': '2'}, {'action_type': 'onsite_conversion.messaging_conversation_started_7d', 'value': '39'}, {'action_type': 'post_reaction', 'value': '63'}, {'action_type': 'link_click', 'value': '63'}]",
+                "date_start": "2024-01-01",
+                "date_stop": "2024-06-30"
+            },
+            {
+                "campaign_id": "120209516116120470",
+                "campaign_name": "Publicación: \"🔴ULTIMAS LOCACIONES DISPONIBLES, SE ACABA LA...\"",
+                "impressions": "8562",
+                "clicks": "687",
+                "spend": "70",
+                "reach": "4978",
+                "frequency": "1.719968",
+                "cpm": "8.17566",
+                "cpc": "0.101892",
+                "ctr": "8.023826",
+                "actions": "[{'action_type': 'onsite_conversion.post_save', 'value': '1'}, {'action_type': 'comment', 'value': '3'}, {'action_type': 'page_engagement', 'value': '327'}, {'action_type': 'post_engagement', 'value': '326'}, {'action_type': 'photo_view', 'value': '267'}, {'action_type': 'onsite_conversion.messaging_user_depth_3_message_send', 'value': '3'}, {'action_type': 'post', 'value': '4'}, {'action_type': 'onsite_conversion.messaging_user_depth_2_message_send', 'value': '13'}, {'action_type': 'like', 'value': '1'}, {'action_type': 'onsite_conversion.messaging_conversation_started_7d', 'value': '14'}, {'action_type': 'post_reaction', 'value': '24'}, {'action_type': 'link_click', 'value': '27'}]",
+                "date_start": "2024-01-01",
+                "date_stop": "2024-06-30"
+            },
+            {
+                "campaign_id": "120209682142570470",
+                "campaign_name": "Publicación: \"🔴ULTIMAS LOCACIONES DISPONIBLES, SE ACABA LA...\"",
+                "impressions": "19323",
+                "clicks": "1644",
+                "spend": "90",
+                "reach": "10673",
+                "frequency": "1.810456",
+                "cpm": "4.657662",
+                "cpc": "0.054745",
+                "ctr": "8.507996",
+                "actions": "[{'action_type': 'onsite_conversion.messaging_first_reply', 'value': '14'}, {'action_type': 'onsite_conversion.post_save', 'value': '1'}, {'action_type': 'comment', 'value': '1'}, {'action_type': 'page_engagement', 'value': '600'}, {'action_type': 'post_engagement', 'value': '599'}, {'action_type': 'photo_view', 'value': '479'}, {'action_type': 'onsite_conversion.messaging_user_depth_3_message_send', 'value': '2'}, {'action_type': 'post', 'value': '5'}, {'action_type': 'onsite_conversion.messaging_user_depth_2_message_send', 'value': '11'}, {'action_type': 'like', 'value': '1'}, {'action_type': 'onsite_conversion.messaging_conversation_started_7d', 'value': '19'}, {'action_type': 'post_reaction', 'value': '68'}, {'action_type': 'link_click', 'value': '45'}]",
+                "date_start": "2024-01-01",
+                "date_stop": "2024-06-30"
+            },
+            {
+                "campaign_id": "120209880484400470",
+                "campaign_name": "Publicación: \"🔴ULTIMAS LOCACIONES DISPONIBLES, SE ACABA LA...\"",
+                "impressions": "13370",
+                "clicks": "1085",
+                "spend": "92.98",
+                "reach": "7536",
+                "frequency": "1.774151",
+                "cpm": "6.954375",
+                "cpc": "0.085696",
+                "ctr": "8.115183",
+                "actions": "[{'action_type': 'onsite_conversion.total_messaging_connection', 'value': '6'}, {'action_type': 'onsite_conversion.messaging_first_reply', 'value': '4'}, {'action_type': 'onsite_conversion.post_save', 'value': '1'}, {'action_type': 'comment', 'value': '2'}, {'action_type': 'page_engagement', 'value': '4365'}, {'action_type': 'post_engagement', 'value': '4361'}, {'action_type': 'onsite_conversion.messaging_user_depth_3_message_send', 'value': '2'}, {'action_type': 'post', 'value': '31'}, {'action_type': 'onsite_conversion.messaging_user_depth_2_message_send', 'value': '4'}, {'action_type': 'like', 'value': '4'}, {'action_type': 'onsite_conversion.messaging_welcome_message_view', 'value': '6'}, {'action_type': 'onsite_conversion.messaging_conversation_started_7d', 'value': '5'}, {'action_type': 'video_view', 'value': '4139'}, {'action_type': 'post_reaction', 'value': '135'}, {'action_type': 'link_click', 'value': '53'}]",
+                "date_start": "2024-01-01",
+                "date_stop": "2024-06-30"
+            }
+            // Aquí van las otras campañas, por brevedad las omito
+               ];
+
+        // Mostrar los datos en la tabla
+        const tableBody = document.querySelector('#data-table tbody');
+        data.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.campaign_id}</td>
+                <td>${item.campaign_name}</td>
+                <td>${item.impressions}</td>
+                <td>${item.clicks}</td>
+                <td>${item.spend}</td>
+                <td>${item.reach}</td>
+                <td>${item.frequency}</td>
+                <td>${item.cpm}</td>
+                <td>${item.cpc}</td>
+                <td>${item.ctr}</td>
+                <td>${JSON.stringify(item.actions)}</td>
+                <td>${item.date_start}</td>
+                <td>${item.date_stop}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        // Configuración de los gráficos
+        const ctx1 = document.getElementById('impressionsChart').getContext('2d');
+        const ctx2 = document.getElementById('clicksChart').getContext('2d');
+        const ctx3 = document.getElementById('spendChart').getContext('2d');
+
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: data.map(item => item.campaign_name),
+                datasets: [{
+                    label: 'Impressions',
+                    data: data.map(item => item.impressions),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: data.map(item => item.campaign_name),
+                datasets: [{
+                    label: 'Clicks',
+                    data: data.map(item => item.clicks),
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        new Chart(ctx3, {
+            type: 'pie',
+            data: {
+                labels: data.map(item => item.campaign_name),
+                datasets: [{
+                    label: 'Spend',
+                    data: data.map(item => item.spend),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': $' + tooltipItem.raw.toFixed(2);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
